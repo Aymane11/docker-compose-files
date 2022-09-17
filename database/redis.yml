@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  redis:
+    container_name: redis
+    image: redis
+    command: redis-server --appendonly yes --requirepass admin --maxmemory 512mb --maxmemory-policy allkeys-lru --tcp-keepalive 0
+    volumes:
+      - cache:/data
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+volumes:
+  cache:
+    driver: local
+
+networks:
+  default:
+    driver: bridge
