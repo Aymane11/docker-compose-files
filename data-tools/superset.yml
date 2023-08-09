@@ -1,0 +1,17 @@
+version: "3.9"
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  pg:
+    container_name: superset # host name
+    image: apache/superset
+    ports:
+      - '8080:8088'
+    restart: unless-stopped
+
+volumes:
+  db:
+    driver: local
